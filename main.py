@@ -187,7 +187,7 @@ def MidProgressiveness(player):
     
     fig,ax = plt.subplots(1,1)
     ax = progressive_mid_only['Progressiveness per 90'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
-    plt.xlabel('Progressiveness per 90', fontsize=14)
+    plt.xlabel('Progressiveness per 90mins', fontsize=14)
     plt.ylabel('Frequency', fontsize=14)
     player_progressiveness = progressive_mid_only.loc[progressive_mid_only['Player'] == player, 'Progressiveness per 90']
     if player_progressiveness.empty:
@@ -212,7 +212,7 @@ def DefProgressiveness(player):
     
     fig,ax = plt.subplots(1,1)
     ax = progressive_def_only['Progressiveness per 90'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
-    plt.xlabel('Progressiveness per 90', fontsize=14)
+    plt.xlabel('Progressiveness per 90mins', fontsize=14)
     plt.ylabel('Frequency', fontsize=14)
     player_progressiveness = progressive_def_only.loc[progressive_def_only['Player'] == player, 'Progressiveness per 90']
     if player_progressiveness.empty:
@@ -240,6 +240,7 @@ elif choose_option == 'Attacking Output':
     'Please choose a visualisation you wish to see'
   elif Attacking_output == 'Top finishers':
     'These are the top finishers'
+    'Gls = Goals | xG = Expected Goals | xG_90 = Expected goals per 90minutes'
     good_finishers[['Player', 'Team', 'Gls', 'xG', 'xG_90', 'Gls - XG']]
     fig, axes = plt.subplots(1, 1, figsize=(12, 7))
 
@@ -265,6 +266,7 @@ elif choose_option == 'Attacking Output':
         
   elif Attacking_output == 'Worst Finishers':
     'These are the worst finishers'  
+    'Gls = Goals | xG = Expected Goals | xG_90 = Expected goals per 90minutes'
     bad_finishers[['Player', 'Team', 'Gls', 'xG', 'xG_90', 'Gls - XG']]
     # Create a figure with two subplots side by side
     fig, axes = plt.subplots(1, 1, figsize=(14, 8))
@@ -288,6 +290,7 @@ elif choose_option == 'Attacking Output':
 
   elif Attacking_output == 'Top assisters':
      'These are the top assisters'
+     'Ast = Assists | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes'
      good_assisters[['Player', 'Team', 'Ast', 'xAG', 'xAG_90', 'Ast - XAG']]
      # Create a figure with two subplots side by side
      fig, axes = plt.subplots(1, 1, figsize=(10, 6))
@@ -306,10 +309,13 @@ elif choose_option == 'Attacking Output':
      plt.tight_layout()
      plt.show()
      st.pyplot(fig)
+     'These players got more assists than expected' 
+     ' Their stats look better due to good finishing from their teammate '
 
 
   elif Attacking_output == 'Unlucky assisters':
      'These are the Unlucky assisters - They should have had more assists from the chances they created'
+     'Ast = Assists | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes'
      bad_assisters[['Player', 'Team', 'Ast', 'xAG', 'xAG_90', 'Ast - XAG']]
      # Create a figure with two subplots side by side
      fig, axes = plt.subplots(1, 1, figsize=(10, 6))
@@ -331,7 +337,8 @@ elif choose_option == 'Attacking Output':
 
 
   elif Attacking_output == 'Top finishers outside top 6':
-     " These are the top finishers outside the traditional 'top 6'"   
+     " These are the top finishers outside the traditional 'top 6'" 
+     'Gls = Goals | PK = Penalties scored | Ast = Assists | G+A = Goals+Assists | xG = Expected goals | xG_90 = Expected goals per 90 minutes | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes | Gls - XG = Goals scored above expected (indication of good finishing) | Ast - XAG = Assits above expected (indication of teammate finishing of your chances created)'
      best_outisde_top6_finishers
      fig, axes = plt.subplots(1, 1, figsize=(10, 5))
 
@@ -349,7 +356,8 @@ elif choose_option == 'Attacking Output':
 
 
   elif Attacking_output == 'Unlucky assisters outside top 6':
-     " These are the unlucky assisters outside the traditional 'top 6'"   
+     " These are the unlucky assisters outside the traditional 'top 6'"  
+     'Gls = Goals | PK = Penalties scored | Ast = Assists | G+A = Goals+Assists | xG = Expected goals | xG_90 = Expected goals per 90 minutes | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes | Gls - XG = Goals scored above expected (indication of good finishing) | Ast - XAG = Assits above expected (indication of teammate finishing of your chances created)' 
      unlucky_assist_outside_top6
      fig, axes = plt.subplots(1, 1, figsize=(10, 5))
 
@@ -364,7 +372,8 @@ elif choose_option == 'Attacking Output':
      axes.set_xlabel('Player', labelpad=20)
      axes.set_ylabel('Assists below expected (xAG)')
      st.pyplot(fig)  
-
+     'These players should have had more assists'
+     'Their teammates did not score chances they would be expected to from these players chances created'
 
 elif choose_option == 'Progressiveness':
   Progressiveness = st.sidebar.selectbox(
@@ -377,7 +386,7 @@ elif choose_option == 'Progressiveness':
         'Choose a Progressive analysis option',
         ['Top Progressive Midfielders','Least Progressive Midfielders','Progressive Midfielder comparisons', 'Top Progressive Midfielders OUTSIDE top 6','Least Progressive Midfielders IN top 6', 'Top Young progressive midfielders', 'Top Young progressive midfielders OUTSIDE top 6'])
      if Midfielders == 'Top Progressive Midfielders':
-        'These are the top progressive midfielders - Progressive runs, carries and passes per 90'
+        'These are the top progressive midfielders - Progressive carries, passes and runs per 90minutes'
         top_progressive_mid
         # Create a figure with two subplots side by side
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
@@ -391,16 +400,17 @@ elif choose_option == 'Progressiveness':
         axes.set_title('Top progressive Midfielders', pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90 mins')
 
         # Adjust layout to make room for rotated labels
         plt.tight_layout()
         plt.show()
         st.pyplot(fig)
 
+      
 
      elif Midfielders == 'Least Progressive Midfielders':
-        'These are the least progressive midfielders - Progressive runs, carries and passes per 90'
+        'These are the least progressive midfielders - Progressive carries, passes and runs per 90minutes'
         worse_progressive_mid
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
 
@@ -408,11 +418,11 @@ elif choose_option == 'Progressiveness':
         colors = plt.cm.Greens(np.linspace(0.5, 9, len(progressive_mid_only['Player'])))
         colors2 = plt.cm.Reds(np.linspace(0.5, 6, len(progressive_mid_only['Player'])))
 
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90mins')
 
          # Plot data for bad finishers on the second subplot (axes[1])
         axes.bar(worse_progressive_mid['Player'], worse_progressive_mid['Progressiveness per 90'], color=colors2)
-        axes.set_title('Worse progressive midfielders', pad=30)
+        axes.set_title('Least progressive midfielders', pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
 
@@ -436,6 +446,7 @@ elif choose_option == 'Progressiveness':
 
      elif Midfielders == 'Top Progressive Midfielders OUTSIDE top 6':
         " These are the top progressive midfielsers outside the traditional 'top 6'"
+        'Progressiveness per 90 = Progressive Carries, passes and runs per 90 minutes'
         top_outsideTop6_Progmid
         # Create a figure with two subplots side by side
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
@@ -449,7 +460,7 @@ elif choose_option == 'Progressiveness':
         axes.set_title('Top progressive Midfielders OUTSIDE top 6', pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
         plt.tight_layout()
@@ -458,7 +469,8 @@ elif choose_option == 'Progressiveness':
 
 
      elif Midfielders == 'Least Progressive Midfielders IN top 6':
-        " These are the least progressive midfielsers in the traditional 'top 6'"  
+        " These are the least progressive midfielsers in the traditional 'top 6'" 
+        'Progressiveness per 90 = Progressive Carries, passes and runs per 90 minutes' 
         worse_top6_progmid
         # Create a figure with two subplots side by side
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
@@ -472,7 +484,7 @@ elif choose_option == 'Progressiveness':
         axes.set_title('Least progressive midfielders IN Top 6', pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
         plt.tight_layout()
@@ -481,6 +493,7 @@ elif choose_option == 'Progressiveness':
 
      elif Midfielders == 'Top Young progressive midfielders OUTSIDE top 6':
         " These are the most progressive young midfielsers (under 24) outside the traditional 'top 6'"  
+        'Progressiveness per 90 = Progressive Carries, passes and runs per 90 minutes'
         Top_young_progressive_midfielder_outsideTop6
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
 
@@ -493,7 +506,7 @@ elif choose_option == 'Progressiveness':
         axes.set_title("Most progressive young midfielders outside 'Top 6'", pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
         plt.tight_layout()
@@ -503,6 +516,7 @@ elif choose_option == 'Progressiveness':
 
      else:
         'These the the top young progressive midfielders (under 24)'  
+        'Progressiveness per 90 = Progressive Carries, passes and runs per 90 minutes'
         Top12_young_progressive_midfield = Top_young_progressive_midfield.head(12)
         Top12_young_progressive_midfield
         fig, axes = plt.subplots(1, 1, figsize=(9, 7))
@@ -516,12 +530,14 @@ elif choose_option == 'Progressiveness':
         axes.set_title("Most progressive young midfielders ", pad=30)
         axes.tick_params(axis='x', rotation=90)
         axes.set_xlabel('Player', labelpad=20)
-        axes.set_ylabel('Progressiveness per 90')
+        axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
         plt.tight_layout()
         plt.show()
         st.pyplot(fig)
+
+        st.markdown('<p style="color: red;"> In the 2024-25 season gravenberch and Smith Rowe have both excelled and became one of the most influential players for their teams</p>', unsafe_allow_html=True)
 
 
 
@@ -533,6 +549,7 @@ elif choose_option == 'Progressiveness':
       ['Top Progressive Defenders', 'Top Progressive Defenders OUTSIDE top 6', 'Defender Progressiveness comparison', 'Top Young progressive defenders', 'Top Young progressive defenders OUTSIDE top 6'])
     if Defenders == 'Top Progressive Defenders':
        'These are the top progressive defenders'
+       'Pos = Position | Min = Minutes Played | PrgC = progressive carries | PrgP = progressive passes | PrgR = progressive runs | Progressiveness = PrgC + PrgP + PrgR | Progressiveness per 90 = progressive carries, passes and runs per 90 minutes'
        Top12_progressive_def
        fig, axes = plt.subplots(1, 1, figsize=(9, 7))
 
@@ -545,7 +562,7 @@ elif choose_option == 'Progressiveness':
        axes.set_title('Most progressive Defenders per 90', pad=30)
        axes.tick_params(axis='x', rotation=90)
        axes.set_xlabel('Player', labelpad=20)
-       axes.set_ylabel('Progressiveness per 90')
+       axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
        plt.tight_layout()
@@ -558,6 +575,7 @@ elif choose_option == 'Progressiveness':
     
     elif Defenders == 'Top Progressive Defenders OUTSIDE top 6':
        " These are the top progressive defenders outside the traditional 'top 6'"
+       'Pos = Position | Min = Minutes Played | PrgC = progressive carries | PrgP = progressive passes | PrgR = progressive runs | Progressiveness = PrgC + PrgP + PrgR | Progressiveness per 90 = progressive carries, passes and runs per 90 minutes'
        Top12_progressive_Defenders_outsideTop6
        fig, axes = plt.subplots(1, 1, figsize=(9, 7))
 
@@ -582,6 +600,7 @@ elif choose_option == 'Progressiveness':
     
     elif Defenders == 'Top Young progressive defenders':
        'These are the top young progressive defenders (under 24)'
+       'Pos = Position | Min = Minutes Played | PrgC = progressive carries | PrgP = progressive passes | PrgR = progressive runs | Progressiveness = PrgC + PrgP + PrgR | Progressiveness per 90 = progressive carries, passes and runs per 90 minutes'
        Top12_young_progressive_defender
        fig, axes = plt.subplots(1, 1, figsize=(9, 7))
 
@@ -591,10 +610,10 @@ elif choose_option == 'Progressiveness':
 
         # Plot data for bad finishers on the second subplot (axes[1])
        axes.bar(Top12_young_progressive_defender['Player'], Top12_young_progressive_defender['Progressiveness per 90'], color=colors)
-       axes.set_title("Most progressive Young defenders Defenders per 90", pad=30)
+       axes.set_title("Most progressive Young defenders Defenders per 90mins", pad=30)
        axes.tick_params(axis='x', rotation=90)
        axes.set_xlabel('Player', labelpad=20)
-       axes.set_ylabel('Progressiveness per 90')
+       axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
        plt.tight_layout()
@@ -603,7 +622,8 @@ elif choose_option == 'Progressiveness':
 
        
     elif Defenders == 'Top Young progressive defenders OUTSIDE top 6':
-       " These are the top progressive young defenders outside the traditional 'top 6'"  
+       " These are the top progressive young defenders outside the traditional 'top 6'" 
+       'Pos = Position | Min = Minutes Played | PrgC = progressive carries | PrgP = progressive passes | PrgR = progressive runs | Progressiveness = PrgC + PrgP + PrgR | Progressiveness per 90 = progressive carries, passes and runs per 90 minutes' 
        Top12_young_progressive_defender_outsideTop6
 
        fig, axes = plt.subplots(1, 1, figsize=(9, 7))
@@ -617,7 +637,7 @@ elif choose_option == 'Progressiveness':
        axes.set_title("Most progressive Young defenders Defenders outside 'top 6' ", pad=30)
        axes.tick_params(axis='x', rotation=90)
        axes.set_xlabel('Player', labelpad=20)
-       axes.set_ylabel('Progressiveness per 90')
+       axes.set_ylabel('Progressiveness per 90mins')
 
         # Adjust layout to make room for rotated labels
        plt.tight_layout()
@@ -696,6 +716,7 @@ elif choose_option == 'Salaries':
 
     elif Salaries == 'Salary compared to finishing':
        'Salaries compared to finishing level (overachive xG)'
+       'High Gls - XG = good finishing - score more than expected from the quality of chances they got'
        salary_attacking_only_sortedtop10 = salary_attacking_only_sortedtop10[['Player', 'Yearly Salary', 'Gls', 'Gls - XG', 'Finisher Rank', 'Wage Rank (out of 154 attackers)']]
        salary_attacking_only_sortedtop10
 
@@ -708,7 +729,7 @@ elif choose_option == 'Salaries':
 
        st.markdown('#### Can see that the top Wages for attackers are not the best finishers or the best finishers + expected assists.')
        st.markdown('### Sancho, Martial, Mount and Fati especially are on extremely high wages for their output.')
-       st.markdown('##### Perhaps Surprisingly, Haaland and Salah are very near the bottom of the finishers list - they both should have scored more goals according to their xG.')
+       st.markdown('##### Perhaps Surprisingly, Haaland and Salah are very near the bottom of the finishers list - they both should have scored more goals according to their xG (expected goals).')
   
 
      
@@ -723,6 +744,8 @@ elif choose_option == 'Salaries':
        salary_attacking_only_sorted_att[['Player', 'Yearly Salary', 'Gls - XG', '(Gls - XG) + xAG', 'overperform finishing + assists Rank', 'Wage Rank (out of 154 attackers)']]
        
        st.markdown('#### Looking at good finishing plus expected assists together Palmer, Bailey, Olise, Gordon, McNeil and Mateta all have a strong case to get a higher wage.')
+      
+       st.markdown('<p style="color: red;">Interestingly - in the 2024 season Palmer got a big 9 year contract and Olise got a big move to Bayern Munich</p>', unsafe_allow_html=True)
        
 
        
@@ -732,6 +755,8 @@ elif choose_option == 'Salaries':
 
     elif Salaries == 'salary compared to progressiveness (midfielders)':
        'Midfielders salaries compared to their progressiveness rank '   
+       'Progressiveness per 90 = progressive carries, passes and runs per 90 minutes'
+
        salaries_progressive = salaries.copy()
        salaries_progressive = salaries_progressive[['Player', 'Yearly Salary', 'Pos','Age', 'Min', 'PrgC', 'PrgP', 'PrgR', 'Team']]      
        salaries_progressive['Progressiveness'] = salaries_progressive['PrgC'] + salaries_progressive['PrgP'] + salaries_progressive['PrgR']
@@ -745,6 +770,8 @@ elif choose_option == 'Salaries':
        top_progressive_mid_salaries[['Player', 'Yearly Salary', 'Age', 'Team', 'Progressiveness per 90', 'Wage Rank (out of 73)', 'Midfield Progressive rank']]
 
        st.markdown('### The top progressive midfielders do have some of the highest midfield salaries eg De Bruyne, Odegaard, Maddison, Rodri, Enzo, Gravenberch are all in the top 10 wages as well as top 12 progressiveness')
+       st.markdown('<p style="color: red;">In the 2024-25 Season: <br>Lo Celso has started very well for Real Betis scoring 3 in 3 games <br> <br> Gravenberch has been one of the standout players in the premier league <br> <br> Smith Rowe has been one of Fulhams best players </p>', unsafe_allow_html=True)
+       
  
 
         
