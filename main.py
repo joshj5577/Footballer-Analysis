@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 # matplotlib inline
 # specify the style of graph we want
-st.set_page_config(layout="centered", initial_sidebar_state="auto")
+st.set_page_config(layout="centered", initial_sidebar_state="expanded")
 
 
 plt.style.use('fivethirtyeight')
