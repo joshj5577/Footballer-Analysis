@@ -37,9 +37,9 @@ st.markdown(
 #st.sidebar.markdown("# Premier League Footballer Data analysis visualisation", font-size = 35, color = 'green')
 
 
-players = pd.read_csv(r"C:\Users\joshj\premier-player-23-24.csv")
+players = pd.read_csv('premier-player-23-24.csv')
 
-salary_data = pd.read_csv(r"C:\Users\joshj\premier-player-23-24 - with salaries.csv")
+salary_data = pd.read_csv('premier-player-23-24 - with salaries.csv')
 
 
 
