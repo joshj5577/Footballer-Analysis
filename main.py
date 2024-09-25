@@ -140,6 +140,9 @@ salaries['Weekly Wage'] = salaries['Weekly Wage'].str.replace('£', '').str.repl
 salaries['Weekly Wage'] = salaries['Weekly Wage'].astype(int)
 
 top_salaries = salaries.sort_values(by='Yearly Salary', ascending=False)
+top_salaries = top_salaries[['Player', 'Yearly Salary', 'Pos', 'Age', 'Min', 'Team']]
+top_salaries = top_salaries.reset_index()
+del top_salaries['index']
 top12_salaries = top_salaries.head(12)
 by_team = salaries.groupby('Team')
 team_means = by_team[['Yearly Salary']].aggregate("mean").sort_values(by='Yearly Salary', ascending=False).round()
