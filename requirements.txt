@@ -1,6 +1,5 @@
-streamlit==1.23.1
-altair==4.2.0
-pandas==1.5.3
-numpy==1.23.5  # or a compatible version
-matplotlib==3.7.1  # add this line
-setuptools>=60.0.0  # optional, to ensure setuptools is installed
+streamlit
+altair
+pandas
+numpy
+matplotlib
