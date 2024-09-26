@@ -6,3 +6,6 @@ Premier League Player analysis 23-24 season
 
 ## Link to Streamlit app - take a look!
 https://footballer-analysis-basxcc5c2yjezsqhcl5szt.streamlit.app/
+
+## Link to Analysis Powerpoint Presentation and insights of Selected Visualisations
+https://1drv.ms/p/s!ApZIap4zI2O5iq9Umx3_dffSDyUYOA
