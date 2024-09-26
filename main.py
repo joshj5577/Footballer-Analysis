@@ -296,7 +296,7 @@ elif choose_option == 'Attacking Output':
     st.pyplot(fig)
 
   elif Attacking_output == 'Top assisters':
-      st.markdown('## These are the players with more assists than expected (overperform x_AG)')
+     st.markdown('## These are the players with more assists than expected (overperform x_AG)')
      'Ast = Assists | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes'
      good_assisters[['Player', 'Team', 'Ast', 'xAG', 'xAG_90', 'Ast - XAG']]
      # Create a figure with two subplots side by side
