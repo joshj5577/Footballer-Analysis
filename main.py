@@ -176,6 +176,11 @@ salary_attacking_only_sorted = salary_attacking_only_sorted.reset_index()
 del salary_attacking_only_sorted['index']
 salary_attacking_only_sortedtop10 = salary_attacking_only_sorted.head(10) 
 
+regular_players_GA_ass_90 = regular_players_GA.sort_values(by='xAG_90', ascending=False)
+regular_players_GA_ass_90 = regular_players_GA_ass_90[['Player', 'Pos', 'Min', 'Gls', 'Ast', 'xAG', 'xAG_90', 'Team']]
+top_regular_players_GA_ass_90 = regular_players_GA_ass_90.head(30)
+top_regular_players_GA_ass_90
+
 
 
 def MidProgressiveness(player):
@@ -314,6 +319,8 @@ elif choose_option == 'Attacking Output':
      st.pyplot(fig)
      'These players got more assists than expected' 
      ' Their stats look better due to good finishing from their teammate '
+     top_regular_players_GA_ass_90
+     'These players have the top expected assists (xAG_90) per 90 minutes'
 
 
   elif Attacking_output == 'Unlucky assisters':
