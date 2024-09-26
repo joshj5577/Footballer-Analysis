@@ -178,7 +178,10 @@ salary_attacking_only_sortedtop10 = salary_attacking_only_sorted.head(10)
 
 regular_players_GA_ass_90 = regular_players_GA.sort_values(by='xAG_90', ascending=False)
 regular_players_GA_ass_90 = regular_players_GA_ass_90[['Player', 'Pos', 'Min', 'Gls', 'Ast', 'xAG', 'xAG_90', 'Team']]
-top_regular_players_GA_ass_90 = regular_players_GA_ass_90.head(30)
+top_regular_players_GA_ass_90 = top_regular_players_GA_ass_90.reset_index()
+del top_regular_players_GA_ass_90['index']
+top_regular_players_GA_ass_90 = top_regular_players_GA_ass_90.head(30)
+top_regular_players_GA_ass_90
 
 
 
