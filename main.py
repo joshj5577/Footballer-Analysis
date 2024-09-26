@@ -296,7 +296,7 @@ elif choose_option == 'Attacking Output':
     st.pyplot(fig)
 
   elif Attacking_output == 'Top assisters':
-     'These are the top assisters'
+      st.markdown('## These are the players with more assists than expected (overperform x_AG)')
      'Ast = Assists | xAG = Expected Assists | xAG_90 = Expected assists per 90minutes'
      good_assisters[['Player', 'Team', 'Ast', 'xAG', 'xAG_90', 'Ast - XAG']]
      # Create a figure with two subplots side by side
@@ -318,8 +318,10 @@ elif choose_option == 'Attacking Output':
      st.pyplot(fig)
      'These players got more assists than expected' 
      ' Their stats look better due to good finishing from their teammate '
+     ' '
+     st.markdown('## These are the top assisters (Highest expected assits per 90 minutes)')
      top_regular_players_GA_ass_90
-     'These players have the top expected assists (xAG_90) per 90 minutes'
+     
 
 
   elif Attacking_output == 'Unlucky assisters':
