@@ -181,7 +181,6 @@ regular_players_GA_ass_90 = regular_players_GA_ass_90[['Player', 'Pos', 'Min', '
 top_regular_players_GA_ass_90 = top_regular_players_GA_ass_90.reset_index()
 del top_regular_players_GA_ass_90['index']
 top_regular_players_GA_ass_90 = top_regular_players_GA_ass_90.head(30)
-top_regular_players_GA_ass_90
 
 
 
