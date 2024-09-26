@@ -675,7 +675,7 @@ elif choose_option == 'Progressiveness':
 elif choose_option == 'Salaries':
     Salaries = st.sidebar.selectbox(
     'Choose a Salary analysis option',
-    ['Salaries','Top Salaries', 'Top Team Average salaries', 'Salary compared to G+A', 'Salary compared to finishing', 'salary compared to finishing + assists', 'salary compared to progressiveness (midfielders)'])
+    ['Salaries','Top Salaries', 'Top Team Average salaries', 'Interactive: salary compared to Goals+Assists', 'Salary compared to finishing', 'salary compared to finishing + assists', 'salary compared to progressiveness (midfielders)'])
     if Salaries == 'Salaries':
        'Please choose an analysis you wish to see'
     elif Salaries == 'Top Salaries':
@@ -690,7 +690,7 @@ elif choose_option == 'Salaries':
 
 
 
-    elif Salaries == 'Salary compared to G+A':
+    elif Salaries == 'Interactive: salary compared to Goals+Assists':
        
   
       fig = go.Figure()
