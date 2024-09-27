@@ -190,15 +190,15 @@ def MidProgressiveness(player):
     progressive = players.copy()
     progressive = progressive[['Player', 'Pos', 'Min', 'PrgC', 'PrgP', 'PrgR']]
     progressive['Progressiveness'] = progressive['PrgC'] + progressive['PrgP'] + progressive['PrgR']
-    progressive['Progressiveness per 90'] = (progressive['Progressiveness'] / progressive['Min']) * 90
+    progressive['Progressiveness per 90mins (All Midfielders)'] = (progressive['Progressiveness'] / progressive['Min']) * 90
     progressive_mid = (progressive['Pos'] == 'MF') & (progressive['Min'] > 300)
     progressive_mid_only = progressive[progressive_mid] 
     
-    fig,ax = plt.subplots(1,1)
-    ax = progressive_mid_only['Progressiveness per 90'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
+    fig,ax = plt.subplots(1,1, figsize=(12,7))
+    ax = progressive_mid_only['Progressiveness per 90mins (All Midfielders)'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
     plt.xlabel('Progressiveness per 90mins', fontsize=14)
     plt.ylabel('Frequency', fontsize=14)
-    player_progressiveness = progressive_mid_only.loc[progressive_mid_only['Player'] == player, 'Progressiveness per 90']
+    player_progressiveness = progressive_mid_only.loc[progressive_mid_only['Player'] == player, 'Progressiveness per 90mins (All Midfielders)']
     if player_progressiveness.empty:
         print("Please enter a player's full name in quotes e.g. 'Declan Rice'")
         return  # Exit the function if the player is not found
@@ -215,15 +215,15 @@ def DefProgressiveness(player):
     progressive = players.copy()
     progressive = progressive[['Player', 'Pos', 'Min', 'PrgC', 'PrgP', 'PrgR']]
     progressive['Progressiveness'] = progressive['PrgC'] + progressive['PrgP'] + progressive['PrgR']
-    progressive['Progressiveness per 90'] = (progressive['Progressiveness'] / progressive['Min']) * 90
+    progressive['Progressiveness per 90mins (All Defenders)'] = (progressive['Progressiveness'] / progressive['Min']) * 90
     progressive_def = (progressive['Pos'] == 'DF') & (progressive['Min'] > 300)
     progressive_def_only = progressive[progressive_def] 
     
-    fig,ax = plt.subplots(1,1)
-    ax = progressive_def_only['Progressiveness per 90'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
+    fig,ax = plt.subplots(1,1, figsize=(12,7))
+    ax = progressive_def_only['Progressiveness per 90mins (All Defenders)'].plot(kind='hist', fontsize=14, color='#00ABC8', bins=20)
     plt.xlabel('Progressiveness per 90mins', fontsize=14)
     plt.ylabel('Frequency', fontsize=14)
-    player_progressiveness = progressive_def_only.loc[progressive_def_only['Player'] == player, 'Progressiveness per 90']
+    player_progressiveness = progressive_def_only.loc[progressive_def_only['Player'] == player, 'Progressiveness per 90mins (All Defenders)']
     if player_progressiveness.empty:
         print("Please enter a player's full name in quotes e.g. 'Andrew Robertson'")
         return  # Exit the function if the player is not found
